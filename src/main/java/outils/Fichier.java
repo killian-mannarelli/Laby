@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 import labyrinthe.ISalle;
 import labyrinthe.Labyrinthe;
+import outils.InvalidFileException;
 
 /**
  *
@@ -79,9 +80,16 @@ public class Fichier {
             return test2.size() == test.size();
     }
     
-    public static boolean testValide(String nomFichier){
+    public static boolean testValide(String nomFichier) throws InvalidFileException{
         File fichier = new File(nomFichier);
-        return testCoordonneesSallesFichier(fichier) && testPasDeDoublonFichier(fichier);
+        if(!testCoordonneesSallesFichier(fichier) || !testPasDeDoublonFichier(fichier)){
+            throw new InvalidFileException("Fichier Invalide");
+
+ 
+        }
+        else{
+            return true;
+        }
     }
     
 }
