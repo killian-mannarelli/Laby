@@ -20,11 +20,11 @@ public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
 
     @Override
     public void creerLabyrinthe(String file) {
-        try{
-          Fichier f = new Fichier(file);
-        if(!Fichier.testValide(file)){
-            throw new InvalidFileException("Fichier Invalide");
-        }
+        
+       try{
+           
+              Fichier.testValide(file);
+             Fichier f = new Fichier(file);
                 largeur=f.lireNombre(); 
         hauteur=f.lireNombre();
         int xentree = f.lireNombre();
@@ -55,17 +55,15 @@ public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
                       add(newSalle);
                       }
         }
-        }
+         
+       }
+    
     	catch(InvalidFileException e){
-            System.out.println("Niveau invalide, chargement du niveau de secours");
-            if(file.equals("labys/level7.txt")){
-                System.exit(0);
-            }
-            else{
-              creerLabyrinthe("labys/level7.txt");  
-            }
-           
+            System.out.println("Bug");
         }
+           
+           
+        
 
     }
 
@@ -97,6 +95,21 @@ public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
     @Override
     public int getHauteur() {
         return hauteur;
+    }
+    
+    public void setLargeur(int newlargeur){
+        largeur = newlargeur;
+    }
+    
+    public void setHauteur(int newhauteur){
+        hauteur = newhauteur;
+    }
+    
+    public void setEntree(Salle newEntree){
+        this.entree=newEntree;
+    }
+    public void setSortie(Salle newSortie){
+        this.sortie = newSortie;
     }
 
 }
