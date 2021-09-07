@@ -1,6 +1,7 @@
 import static org.junit.Assert.*;
 import java.io.File;
 import org.junit.Test;
+import outils.Fichier;
 
 /**
  *
@@ -37,5 +38,37 @@ public class TestFichiersLabyrinthe {
         File[] fichiers = getFiles(repertoire);
         fail("not implemented");
     }
-
+    
+    boolean testCoordonneesSallesFichier(File f){
+        Fichier test = new Fichier(f.getAbsolutePath());
+        int largeur = test.lireNombre();
+        int hauteur = test.lireNombre();
+        boolean result = true;
+        boolean isX = true;
+        int nb = test.lireNombre();
+        while(result){
+            if(isX){
+                if(nb< largeur && nb != -1){
+                    result = false;
+                    
+                }
+                else{
+                    isX=false;
+                    nb = test.lireNombre();
+                }
+            }
+            else{
+              if(nb< hauteur && nb != -1){
+                    result = false;
+                    
+                } 
+              else{
+                  isX=true;
+                    nb = test.lireNombre();
+              }
+            }
+        } 
+        
+        return result;
+    }
 }
