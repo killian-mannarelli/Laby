@@ -59,7 +59,12 @@ public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
        }
     
     	catch(InvalidFileException e){
-            System.out.println("Bug");
+            if(!file.equals("labys/level7.txt")){
+                creerLabyrinthe("labys/level7.txt");
+            }
+            else{
+               System.exit(0); 
+            }
         }
            
            
@@ -69,7 +74,13 @@ public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
 
     @Override
     public Collection<ISalle> sallesAccessibles(IPersonnage bob) {
-        return null;
+        ArrayList<ISalle> adj = new ArrayList<>();
+        for(ISalle i  : this){
+            if(i.estAdjacente(bob.getPosition())){
+                adj.add(i);
+            }
+        }
+        return adj;
     }
 
     @Override
