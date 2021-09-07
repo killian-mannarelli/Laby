@@ -25,8 +25,8 @@ public class TestFichiersLabyrinthe {
         File repertoire = new File("labys/");
         File[] fichiers = getFiles(repertoire);
         for(File i : fichiers){
-            System.out.print(i.getName()+ "Ok !");
-            assertTrue(testCoordonneesSallesFichier(i));
+
+            assertTrue(Fichier.testCoordonneesSallesFichier(i));
         }
 
     }
@@ -37,12 +37,13 @@ public class TestFichiersLabyrinthe {
         File repertoire = new File("labys/");
         File[] fichiers = getFiles(repertoire);
         for(File i : fichiers){
-            Labyrinthe test = new Labyrinthe();
-            test.creerLabyrinthe(i.getAbsolutePath());
-            HashSet<ISalle> test2 = new HashSet<>(test);
-            assertEquals(test2.size(),test.size());
+            
+            
+            assertTrue(Fichier.testPasDeDoublonFichier(i));
         }
     }
+    
+    
 
     @Test
     public void testChemin() {
@@ -51,46 +52,5 @@ public class TestFichiersLabyrinthe {
         fail("not implemented");
     }
     
-    boolean testCoordonneesSallesFichier(File f){
-        Fichier test = new Fichier(f.getAbsolutePath());
-        System.out.println("Analyse du niveau : " + f.getName());
-        int largeur = test.lireNombre();
-        int hauteur = test.lireNombre();
-        boolean result = true;
-        boolean isX = true;
-        boolean fin = true;
-        int nb = test.lireNombre();
-        while(result && fin){
-            System.out.println("NB = "+ nb);
-            if(isX){
-                if(nb> largeur || nb<0 && nb !=-1){
-                    
-                    result = false;
-                    
-                }
-                else if(nb == -1){
-                    fin = false;
-                }
-                else{
-                    isX=false;
-                    nb = test.lireNombre();
-                }
-            }
-            else{
-              if(nb> hauteur || nb<0 && nb !=-1){
-                    result = false;
-                    
-                }
-              else if(nb == -1){
-                    fin = false;
-                }
-              else{
-                  isX=true;
-                    nb = test.lireNombre();
-              }
-            }
-        } 
-        
-        return result;
-    }
+    
 }
