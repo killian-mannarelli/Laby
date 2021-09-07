@@ -36,7 +36,15 @@ public class Salle implements ISalle{
     }
 
     public boolean estAdjacente(ISalle autre){
-        return false; 
+     if(autre.getX() == getX()+1 || autre.getX() == getX()-1){
+         return true;
+     }
+     else if(autre.getY() == getY()+1 || autre.getY() == getY()-1){
+         return true;
+     }
+     else{
+         return false;
+     }
     }
     @Override
 		public int hashCode() {
