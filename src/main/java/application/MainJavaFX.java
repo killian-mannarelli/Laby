@@ -44,7 +44,6 @@ public class MainJavaFX extends Application {
         Thread th = new Thread(task);
         th.setDaemon(true);
         th.start();
-       /mnt/roost/users/kmannarelli/gomoku
     }
 
     public static void main(String[] args) {

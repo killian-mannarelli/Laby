@@ -39,12 +39,12 @@ public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
         while(nb != -1){
           isX = !isX;
           nb = f.lireNombre();
-          if(isX && nb !=1){
+          if(isX && nb !=-1){
               
               nextX= nb;
               
           }
-          else if(!isX && nb == 1)   {
+          else if(!isX && nb != -1)   {
                       nextY = nb;
                       Salle newSalle = new Salle(nextX,nextY);
                       add(newSalle);
