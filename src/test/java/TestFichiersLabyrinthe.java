@@ -1,7 +1,10 @@
 import static org.junit.Assert.*;
 import java.io.File;
+import java.util.HashSet;
+import labyrinthe.ISalle;
 import org.junit.Test;
 import outils.Fichier;
+import labyrinthe.Labyrinthe;
 
 /**
  *
@@ -33,7 +36,12 @@ public class TestFichiersLabyrinthe {
     public void testPasDeDoublon() {
         File repertoire = new File("labys/");
         File[] fichiers = getFiles(repertoire);
-        fail("not implemented");
+        for(File i : fichiers){
+            Labyrinthe test = new Labyrinthe();
+            test.creerLabyrinthe(i.getAbsolutePath());
+            HashSet<ISalle> test2 = new HashSet<>(test);
+            assertEquals(test2.size(),test.size());
+        }
     }
 
     @Test
