@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import outils.Fichier;
+import outils.InvalidFileException;
 import personnages.IPersonnage;
 
 /**
@@ -19,8 +20,12 @@ public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
 
     @Override
     public void creerLabyrinthe(String file) {
-    	Fichier f = new Fichier(file);
-        largeur=f.lireNombre(); 
+        try{
+          Fichier f = new Fichier(file);
+        if(!Fichier.testValide(file)){
+            throw new InvalidFileException("Fichier Invalide");
+        }
+                largeur=f.lireNombre(); 
         hauteur=f.lireNombre();
         int xentree = f.lireNombre();
         int yentree = f.lireNombre();
@@ -50,6 +55,18 @@ public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
                       add(newSalle);
                       }
         }
+        }
+    	catch(InvalidFileException e){
+            System.out.println("Niveau invalide, chargement du niveau de secours");
+            if(file.equals("labys/level7.txt")){
+                System.exit(0);
+            }
+            else{
+              creerLabyrinthe("labys/level7.txt");  
+            }
+           
+        }
+
     }
 
     @Override

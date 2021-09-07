@@ -80,10 +80,10 @@ public class Fichier {
             return test2.size() == test.size();
     }
     
-    public static boolean testValide(String nomFichier) throws InvalidFileException{
+    public static boolean testValide(String nomFichier){
         File fichier = new File(nomFichier);
         if(!testCoordonneesSallesFichier(fichier) || !testPasDeDoublonFichier(fichier)){
-            throw new InvalidFileException("Fichier Invalide");
+            return false;
 
  
         }
