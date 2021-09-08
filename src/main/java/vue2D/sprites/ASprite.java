@@ -30,7 +30,7 @@ public abstract class ASprite implements ISprite {
     	public void dessiner(GraphicsContext g){
             xpix = getPosition().getX()*unite;
             ypix = getPosition().getY()*unite;
-            g.drawImage(imageperso,xpix,ypix,10,10);
+            g.drawImage(imageperso,xpix,ypix,20,20);
         }
 	public void setCoordonnees(int xpix, int ypix){
             //Je ne vois pas l'intérêt de cette méthode
