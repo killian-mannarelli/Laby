@@ -5,6 +5,7 @@
  */
 package personnages;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Scanner;
 import labyrinthe.ISalle;
@@ -15,8 +16,12 @@ import labyrinthe.ISalle;
  */
 public class Heros extends APersonnage{
    Scanner sc=null;
+   ISalle salleChoisie;
    @Override
      public ISalle faitSonChoix(Collection<ISalle> sallesAccessibles){
-         
+         if(sallesAccessibles.contains(salleChoisie)){
+             return salleChoisie;
+         }
+         return this.getPosition();
      }
 }
