@@ -15,7 +15,9 @@ import labyrinthe.ISalle;
 public abstract class APersonnage implements IPersonnage{
     private ISalle position;
     
-     
+    public APersonnage(ISalle p){
+        position=p;
+    }
 
     // renvoie sa position courante
     @Override

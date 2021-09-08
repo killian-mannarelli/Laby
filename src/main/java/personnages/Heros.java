@@ -18,7 +18,7 @@ public class Heros extends APersonnage{
    ISalle salleChoisie;
    
    public Heros(ISalle salle){
-       salleChoisie = salle;
+       super(salle);
    }
    @Override
      public ISalle faitSonChoix(Collection<ISalle> sallesAccessibles){

@@ -44,6 +44,12 @@ public class Dessin extends Canvas {
                 unite*labyrinthe.getHauteur());
     }
     
+    public void dessinerSprites(){
+        for(ISprite i : sprites){
+            i.dessiner(tampon);
+        }
+    }
+    
     public void dessinSalles(){
         for(ISalle i : labyrinthe){
             tampon.drawImage(groundImage,i.getX()*unite,i.getY()*unite,unite,unite);
