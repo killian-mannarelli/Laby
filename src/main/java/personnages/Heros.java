@@ -15,7 +15,6 @@ import labyrinthe.ISalle;
  * @author Epsi
  */
 public class Heros extends APersonnage{
-   Scanner sc=null;
    ISalle salleChoisie;
    @Override
      public ISalle faitSonChoix(Collection<ISalle> sallesAccessibles){
