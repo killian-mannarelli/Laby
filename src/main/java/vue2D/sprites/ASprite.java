@@ -5,6 +5,7 @@
  */
 package vue2D.sprites;
 
+import java.util.Collection;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import labyrinthe.ISalle;
@@ -42,8 +43,8 @@ public abstract class ASprite implements ISprite {
         public void setPosition(ISalle s){
             perso.setPosition(s);
         }
-        
-        public void faitSonChoix(){
-
+        @Override
+        public ISalle faitSonChoix(Collection<ISalle> sallesAccessibles){
+            return perso.faitSonChoix(sallesAccessibles);
         }
 }
