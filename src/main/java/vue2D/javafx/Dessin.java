@@ -3,6 +3,7 @@ package vue2D.javafx;
 import java.util.Collection;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.effect.Light;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import labyrinthe.ILabyrinthe;
@@ -54,6 +55,10 @@ public class Dessin extends Canvas {
         for(ISalle i : labyrinthe){
             tampon.drawImage(groundImage,i.getX()*unite,i.getY()*unite,unite,unite);
         }
+    }
+    
+    public void setLight(){
+       
     }
 
 }
