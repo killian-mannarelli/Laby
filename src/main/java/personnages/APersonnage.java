@@ -14,7 +14,7 @@ import labyrinthe.ISalle;
  */
 public abstract class APersonnage implements IPersonnage{
     private ISalle position;
-    
+ 
     public APersonnage(ISalle p){
         position=p;
     }
@@ -31,7 +31,7 @@ public abstract class APersonnage implements IPersonnage{
     @Override
     public void setPosition( ISalle s) {
         position = s;
-    }
+    }  
     @Override
      public abstract ISalle faitSonChoix(Collection<ISalle> sallesAccessibles);
     
