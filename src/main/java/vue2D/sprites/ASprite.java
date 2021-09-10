@@ -20,7 +20,7 @@ public abstract class ASprite implements ISprite {
     protected Image imageperso;
     protected int xpix;
     protected int ypix;
-    //protected boolean deplfini=true;
+    protected boolean deplfini=true;
     final int unite = 15;
         
         public ASprite(IPersonnage persoadessiner,Image img){
@@ -32,9 +32,14 @@ public abstract class ASprite implements ISprite {
         
     	public void dessiner(GraphicsContext g){
             
-                //deplfini=false;
+                
 
-            
+            if(xpix != getPosition().getX()*unite ||ypix != getPosition().getY()*unite){
+            deplfini=false;
+        }
+            else{
+                deplfini=true;
+            }
             if(xpix != getPosition().getX()*unite){
                 if(xpix< getPosition().getX()*unite){
                    xpix = xpix+1; 
@@ -73,8 +78,10 @@ public abstract class ASprite implements ISprite {
         }
         @Override
         public ISalle faitSonChoix(Collection<ISalle> sallesAccessibles){
-           
-               return perso.faitSonChoix(sallesAccessibles); 
+                if(deplfini){
+                    return perso.faitSonChoix(sallesAccessibles); 
+                }
+               return getPosition();
             
             
         }
