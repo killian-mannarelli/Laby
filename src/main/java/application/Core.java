@@ -34,6 +34,7 @@ public class Core {
             MonstreSprite m2 = new MonstreSprite(m,labyrinthe);
             vue.add(m2);
         }
+         
         Heros h = new personnages.Heros(labyrinthe.getEntree());
         this.heros = new HerosSprite(h, labyrinthe);
         vue.add(this.heros);

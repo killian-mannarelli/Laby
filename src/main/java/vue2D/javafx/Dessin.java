@@ -23,7 +23,9 @@ public class Dessin extends Canvas {
     private GraphicsContext tampon;
     private Image solImage;
     private Image groundImage;
-   
+    private ISalle positionDuHero;
+    private ISprite spritehero;
+    private boolean spritetrouve = false;
     public Dessin(ILabyrinthe labyrinthe, Collection<ISprite> sprites)
     {
         this.sprites = sprites;
@@ -32,7 +34,9 @@ public class Dessin extends Canvas {
         setHeight(labyrinthe.getHauteur()*unite);
         tampon = this.getGraphicsContext2D();
         chargementImages();
-        dessinFond(); 
+        dessinFond();
+        setHeroPosition();
+        
     }
     
      public void chargementImages(){
@@ -41,24 +45,66 @@ public class Dessin extends Canvas {
     }
     
     public void dessinFond(){
+        
         tampon.drawImage(solImage,0,0,unite*labyrinthe.getLargeur(),
                 unite*labyrinthe.getHauteur());
     }
     
     public void dessinerSprites(){
+        tampon.setGlobalAlpha(1);
+
         for(ISprite i : sprites){
+            setLight(i.getPosition());
             i.dessiner(tampon);
+            
+            
         }
     }
     
     public void dessinSalles(){
+
         for(ISalle i : labyrinthe){
+            setLight(i);
             tampon.drawImage(groundImage,i.getX()*unite,i.getY()*unite,unite,unite);
         }
     }
     
-    public void setLight(){
-       
+    public void setHeroPosition(){
+        if(!spritetrouve){
+            for(ISprite i : sprites){
+            if(i.getPosition().equals(labyrinthe.getEntree())){
+                positionDuHero = i.getPosition();
+                spritehero = i;
+                spritetrouve=true;
+                break;
+            }
+        }
+        }
+        else{
+            positionDuHero = spritehero.getPosition();
+        }
     }
-
+    
+    public void setLight(ISalle salleEnQuestion){
+  double x1 = positionDuHero.getX(); 
+  double y1 = positionDuHero.getY(); 
+  double x2 = salleEnQuestion.getX(); 
+  double y2 = salleEnQuestion.getY();        
+    double distance = Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
+    if(distance > 5){
+        tampon.setGlobalAlpha(0);
+    }
+    else if(distance >4){
+        tampon.setGlobalAlpha(0.2);
+    }
+    else if(distance >3){
+        tampon.setGlobalAlpha(0.3);
+    }
+    else if(distance >2){
+        tampon.setGlobalAlpha(0.5);
+    }
+    else {
+        tampon.setGlobalAlpha(1);
+    }
+}
 }
