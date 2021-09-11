@@ -32,8 +32,8 @@ public abstract class ASprite implements ISprite {
     }
 
     public void dessiner(GraphicsContext g) {
-        float vitesse = 0.05f;
-        if (xpix != getPosition().getX() * unite || ypix != getPosition().getY() * unite) {
+        float vitesse = 0.14f;
+        if ((xpix - getPosition().getX() * unite)*-1 >0.6 || (ypix - getPosition().getY() * unite)*-1 > 0.6) {
             deplfini = false;
         } else {
             deplfini = true;
