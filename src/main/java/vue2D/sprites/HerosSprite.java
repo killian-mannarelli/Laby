@@ -36,18 +36,22 @@ public class HerosSprite extends ASprite implements EventHandler<KeyEvent>{
             case LEFT:
                Salle depl = new Salle(getPosition().getX()-1,getPosition().getY());
                hero.setSalleChoisie(depl);
+               setImage(new Image("file:icons/link/LinkRunShieldL1.gif"));
                break;
             case RIGHT:
                 depl = new Salle(getPosition().getX()+1,getPosition().getY());
                hero.setSalleChoisie(depl);
+               setImage(new Image("file:icons/link/LinkRunR1.gif"));
                break;
             case UP:
                depl = new Salle(getPosition().getX(),getPosition().getY()-1);
                hero.setSalleChoisie(depl);
+               setImage(new Image("file:icons/link/LinkRunU1.gif"));
                break;
             case DOWN:
                depl = new Salle(getPosition().getX(),getPosition().getY()+1);
                hero.setSalleChoisie(depl);
+               setImage(new Image("file:icons/link/LinkRunShieldD2.gif"));
                break;
                
         }

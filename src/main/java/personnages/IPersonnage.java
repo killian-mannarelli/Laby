@@ -2,6 +2,7 @@ package personnages;
 
 import java.util.Collection;
 import labyrinthe.ISalle;
+import labyrinthe.Salle;
 
 /**
 *
@@ -17,4 +18,8 @@ public interface IPersonnage {
     
     // definit sa position courante
     public void setPosition( ISalle s);
+    
+    @Override
+    public boolean equals(Object obj);
+        
 }

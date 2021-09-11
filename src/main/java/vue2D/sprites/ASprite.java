@@ -9,6 +9,7 @@ import java.util.Collection;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import labyrinthe.ISalle;
+import labyrinthe.Salle;
 import personnages.IPersonnage;
 
 /**
@@ -32,8 +33,8 @@ public abstract class ASprite implements ISprite {
     }
 
     public void dessiner(GraphicsContext g) {
-        float vitesse = 0.14f;
-        if ((xpix - getPosition().getX() * unite)*-1 >0.6 || (ypix - getPosition().getY() * unite)*-1 > 0.6) {
+        float vitesse = 0.18f;
+        if ((xpix - (getPosition().getX()) * unite)*-1 >0.6 || (ypix - (getPosition().getY()) * unite)*-1 > 0.6) {
             deplfini = false;
         } else {
             deplfini = true;
@@ -68,5 +69,9 @@ public abstract class ASprite implements ISprite {
 
     public static float lerp(float a, float b, float f) {
         return  (a + f * (b - a));
+    }
+    
+    public void setImage(Image newImage){
+        imageperso = newImage;
     }
 }

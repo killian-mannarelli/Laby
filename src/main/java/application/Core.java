@@ -54,7 +54,7 @@ public class Core {
             ISprite monstre = null;
             for (ISprite p : vue) {
                 if (p != heros) {
-                    if (p.getPosition() == heros.getPosition()) {
+                    if (p.getPosition().equals(heros.getPosition())) {
                         System.out.println("Collision !!");
                         collision = true;
                         monstre = p;
@@ -69,7 +69,7 @@ public class Core {
                 System.out.println("Plus que " + vue.size() + " personnages ...");
             }
 
-            temporisation(50);
+            temporisation(30);
         }
         System.out.println("Gagné!");
     }
