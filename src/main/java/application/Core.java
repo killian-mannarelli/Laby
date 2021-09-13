@@ -22,7 +22,7 @@ public class Core {
 
     protected void initLabyrinthe() {
         // creation du labyrinthe
-        labyrinthe = new labyrinthe.Labyrinthe();
+        labyrinthe = new labyrinthe.LabyrintheGraphe();
         chargementLaby("labys/level3.txt");
     }
 
