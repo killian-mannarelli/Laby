@@ -23,6 +23,7 @@ public class Dessin extends Canvas {
     private GraphicsContext tampon;
     private Image solImage;
     private Image groundImage;
+    private Image cheminImage;
     private ISalle positionDuHero;
     private ISprite spritehero;
     private boolean spritetrouve = false;
@@ -42,6 +43,7 @@ public class Dessin extends Canvas {
      public void chargementImages(){
     	solImage = new Image("file:icons/pyramide.jpg");
         groundImage = new Image ("file:icons/marbre.jpg");
+        cheminImage = new Image ("file:icons/ground.gif");
     }
     
     public void dessinFond(){
@@ -66,6 +68,14 @@ public class Dessin extends Canvas {
         for(ISalle i : labyrinthe){
             setLight(i);
             tampon.drawImage(groundImage,i.getX()*unite,i.getY()*unite,unite,unite);
+        }
+    }
+    
+    public void dessinChemin(){
+        for(ISalle i : labyrinthe.chemin(labyrinthe.getEntree(), labyrinthe.getSortie())){
+            setLight(i);
+            System.out.println(i);
+            tampon.drawImage(cheminImage,i.getX()*unite,i.getY()*unite,unite,unite);
         }
     }
     

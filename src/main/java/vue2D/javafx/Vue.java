@@ -31,6 +31,7 @@ public class Vue extends AVue implements IVue{
          dessin.dessinFond();
          dessin.setHeroPosition();
          dessin.dessinSalles();
+         dessin.dessinChemin();
          dessin.dessinerSprites();
 
     }
