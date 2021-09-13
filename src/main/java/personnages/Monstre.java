@@ -24,7 +24,7 @@ public class Monstre extends APersonnage {
 
     @Override
     public ISalle faitSonChoix(Collection<ISalle> sallesAccessibles) {
-        if(Math.random() < 0.9){
+        if(Math.random() < 0.8){
             return getPosition();
         }
         Random rnd = new Random();
