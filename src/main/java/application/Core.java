@@ -18,6 +18,7 @@ import vue2D.sprites.MonstreSprite;
  */
 public class Core {
     ISprite heros;
+    public static ISprite herosstat;
     ILabyrinthe labyrinthe;
 
     protected void initLabyrinthe() {
@@ -37,6 +38,7 @@ public class Core {
          
         Heros h = new personnages.Heros(labyrinthe.getEntree());
         this.heros = new HerosSprite(h, labyrinthe);
+        this.herosstat = heros;
         vue.add(this.heros);
     }
 

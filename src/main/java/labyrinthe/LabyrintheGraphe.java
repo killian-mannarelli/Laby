@@ -29,8 +29,7 @@ import personnages.IPersonnage;
  */
 public class LabyrintheGraphe extends Labyrinthe implements ILabyrinthe {
 
-    private int largeur;
-    private int hauteur;
+
     public Graph<ISalle, DefaultEdge> standardGraph;
 
     @Override
@@ -62,9 +61,9 @@ public class LabyrintheGraphe extends Labyrinthe implements ILabyrinthe {
     public Collection<ISalle> chemin(ISalle u, ISalle v) {
         DijkstraShortestPath<ISalle, DefaultEdge> dijkstraAlg =
             new DijkstraShortestPath<>(standardGraph);
-        SingleSourcePaths<ISalle, DefaultEdge> iPaths = dijkstraAlg.getPaths(entree);
+        SingleSourcePaths<ISalle, DefaultEdge> iPaths = dijkstraAlg.getPaths(u);
         
-        return iPaths.getPath(sortie).getVertexList();
+        return iPaths.getPath(v).getVertexList();
     }
 
 }

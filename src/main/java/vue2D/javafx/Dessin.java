@@ -1,5 +1,6 @@
 package vue2D.javafx;
 
+import application.Core;
 import java.util.Collection;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -27,6 +28,8 @@ public class Dessin extends Canvas {
     private ISalle positionDuHero;
     private ISprite spritehero;
     private boolean spritetrouve = false;
+    private ISalle positionheroprecedente ;
+    private Collection<ISalle> precedentchemin ;
     public Dessin(ILabyrinthe labyrinthe, Collection<ISprite> sprites)
     {
         this.sprites = sprites;
@@ -66,16 +69,15 @@ public class Dessin extends Canvas {
     public void dessinSalles(){
 
         for(ISalle i : labyrinthe){
-            setLight(i);
-            tampon.drawImage(groundImage,i.getX()*unite,i.getY()*unite,unite,unite);
+            setLight(i); 
+            tampon.drawImage(cheminImage,i.getX()*unite,i.getY()*unite,unite,unite);
         }
     }
     
     public void dessinChemin(){
         for(ISalle i : labyrinthe.chemin(labyrinthe.getEntree(), labyrinthe.getSortie())){
             setLight(i);
-            System.out.println(i);
-            tampon.drawImage(cheminImage,i.getX()*unite,i.getY()*unite,unite,unite);
+            tampon.drawImage(groundImage,i.getX()*unite,i.getY()*unite,unite,unite);
         }
     }
     
@@ -117,4 +119,37 @@ public class Dessin extends Canvas {
         tampon.setGlobalAlpha(1);
     }
 }
+    
+    
+    public void dessinPlusCourtChemin(ISprite heros){
+        int compteur = 0;
+        if(compteur == 0){
+             precedentchemin = labyrinthe.chemin(heros.getPosition(), labyrinthe.getSortie());
+            positionheroprecedente = heros.getPosition();
+            for(ISalle i :precedentchemin){
+            setLight(i);
+            tampon.drawImage(groundImage,i.getX()*unite,i.getY()*unite,unite,unite);
+            compteur++;
+            }
+        }
+        else{
+                    if(heros.getPosition().equals(positionheroprecedente)){
+            for(ISalle i : precedentchemin){
+                setLight(i);
+            tampon.drawImage(groundImage,i.getX()*unite,i.getY()*unite,unite,unite);
+            }
+            
+        }
+        else{
+            precedentchemin = labyrinthe.chemin(heros.getPosition(), labyrinthe.getSortie());
+            positionheroprecedente = heros.getPosition();
+            for(ISalle i :precedentchemin){
+            setLight(i);
+            tampon.drawImage(groundImage,i.getX()*unite,i.getY()*unite,unite,unite);
+        }
+        }
+        }
+
+        
+    }
 }
