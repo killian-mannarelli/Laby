@@ -21,6 +21,7 @@ public class Dessin extends Canvas {
     private Collection<ISprite> sprites;
     private ILabyrinthe labyrinthe;
     private int unite = 15;
+    int compteur = 0;
     private GraphicsContext tampon;
     private Image solImage;
     private Image groundImage;
@@ -122,7 +123,7 @@ public class Dessin extends Canvas {
     
     
     public void dessinPlusCourtChemin(ISprite heros){
-        int compteur = 0;
+        
         if(compteur == 0){
              precedentchemin = labyrinthe.chemin(heros.getPosition(), labyrinthe.getSortie());
             positionheroprecedente = heros.getPosition();

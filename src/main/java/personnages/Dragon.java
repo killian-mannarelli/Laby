@@ -5,6 +5,7 @@
  */
 package personnages;
 
+import application.Core;
 import java.util.Collection;
 import labyrinthe.ISalle;
 
@@ -15,6 +16,10 @@ import labyrinthe.ISalle;
 public class Dragon extends APersonnage{
     
         ISalle salleChoisie;
+        ISalle positionHero;
+        Collection<ISalle> ancienchemin;
+        int compteur = 0;
+        int avantmouvement = 15;
         
          public Dragon(ISalle salle) {
         super(salle);
@@ -22,7 +27,26 @@ public class Dragon extends APersonnage{
     
     @Override
     public ISalle faitSonChoix(Collection<ISalle> sallesAccessibles) {
-        return null;
+        if(compteur < avantmouvement){
+            compteur++;
+            return getPosition();
+        }
+        else{
+            if(sallesAccessibles.contains(salleChoisie)){
+                compteur=0;
+             return salleChoisie;
+         }
+            
+         return this.getPosition();
+        }
+       
+           
+           
+           
+       
+        
     }
-    
+     public void setSalleChoisie(ISalle nouvelleSalle){
+         salleChoisie = nouvelleSalle;
+     }
 }

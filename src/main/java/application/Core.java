@@ -4,10 +4,12 @@ import java.io.IOException;
 import java.util.Collection;
 import labyrinthe.ILabyrinthe;
 import labyrinthe.ISalle;
+import personnages.Dragon;
 import personnages.Heros;
 import personnages.IPersonnage;
 import personnages.Monstre;
 import vue2D.IVue;
+import vue2D.sprites.DragonSprite;
 import vue2D.sprites.HerosSprite;
 import vue2D.sprites.ISprite;
 import vue2D.sprites.MonstreSprite;
@@ -18,6 +20,7 @@ import vue2D.sprites.MonstreSprite;
  */
 public class Core {
     ISprite heros;
+    DragonSprite dragon;
     public static ISprite herosstat;
     ILabyrinthe labyrinthe;
 
@@ -30,12 +33,14 @@ public class Core {
     protected void initSprites(IVue vue) {
         // creation du heros 
         
-        for(int i =0; i < 11 ; i++){
+        for(int i =0; i < 4 ; i++){
             Monstre m = new personnages.Monstre(labyrinthe.getSortie());
             MonstreSprite m2 = new MonstreSprite(m,labyrinthe);
             vue.add(m2);
         }
-         
+        Dragon d = new personnages.Dragon(labyrinthe.getSortie());
+        this.dragon = new DragonSprite(d,labyrinthe);
+        vue.add(this.dragon);
         Heros h = new personnages.Heros(labyrinthe.getEntree());
         this.heros = new HerosSprite(h, labyrinthe);
         this.herosstat = heros;
@@ -49,6 +54,9 @@ public class Core {
             // choix et deplacement
             for (IPersonnage p : vue) {
                 Collection<ISalle> sallesAccessibles = labyrinthe.sallesAccessibles(p);
+                if(p == dragon){
+                    dragon.changerSalleChoisie();
+                }
                 destination = p.faitSonChoix(sallesAccessibles); // on demande au personnage de faire son choix de salle
                 p.setPosition(destination); // deplacement
             }
