@@ -3,6 +3,7 @@ package vue2D.javafx;
 import application.Core;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.Light;
@@ -34,6 +35,7 @@ public class Dessin extends Canvas {
     private ISalle positionheroprecedente ;
     private Collection<ISalle> precedentchemin ;
     HashMap<CoupleDeSalle,Integer> hm = new HashMap<>();
+    HashSet<ISalle> sallevisitee = new HashSet<>();
     public Dessin(ILabyrinthe labyrinthe, Collection<ISprite> sprites)
     {
         this.sprites = sprites;
@@ -90,6 +92,7 @@ public class Dessin extends Canvas {
             for(ISprite i : sprites){
             if(i.getPosition().equals(labyrinthe.getEntree())){
                 positionDuHero = i.getPosition();
+                sallevisitee.add(positionDuHero);
                 spritehero = i;
                 spritetrouve=true;
                 break;
@@ -98,6 +101,7 @@ public class Dessin extends Canvas {
         }
         else{
             positionDuHero = spritehero.getPosition();
+            sallevisitee.add(positionDuHero);
         }
     }
     
@@ -109,22 +113,29 @@ public class Dessin extends Canvas {
   double y2 = salleEnQuestion.getY();        
     double distance = Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
     */
-    int distance = distanceGraphe(positionDuHero,salleEnQuestion);         
-    if(distance > 5){
+    if(sallevisitee.contains(salleEnQuestion)){
+        tampon.setGlobalAlpha(1);
+    }
+    
+    else{
+            int distance = distanceGraphe(positionDuHero,salleEnQuestion);         
+    if(distance > 7){
         tampon.setGlobalAlpha(0);
     }
-    else if(distance >4){
+    else if(distance >6){
         tampon.setGlobalAlpha(0.2);
     }
-    else if(distance >3){
+    else if(distance >5){
         tampon.setGlobalAlpha(0.3);
     }
-    else if(distance >2){
+    else if(distance >4){
         tampon.setGlobalAlpha(0.5);
     }
     else {
         tampon.setGlobalAlpha(1);
     }
+    }
+
 }
     
     
