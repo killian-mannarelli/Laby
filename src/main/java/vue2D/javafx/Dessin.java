@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import labyrinthe.ILabyrinthe;
 import labyrinthe.ISalle;
+import labyrinthe.Salle;
 import vue2D.sprites.ISprite;
 
 /**
@@ -99,11 +100,13 @@ public class Dessin extends Canvas {
     }
     
     public void setLight(ISalle salleEnQuestion){
+            
   double x1 = positionDuHero.getX(); 
   double y1 = positionDuHero.getY(); 
   double x2 = salleEnQuestion.getX(); 
   double y2 = salleEnQuestion.getY();        
     double distance = Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
+    //int distance = distanceGraphe(positionDuHero,salleEnQuestion);         
     if(distance > 5){
         tampon.setGlobalAlpha(0);
     }
@@ -152,5 +155,9 @@ public class Dessin extends Canvas {
         }
 
         
+    }
+    int distanceGraphe(ISalle s, ISalle t){
+        Collection<ISalle> cheminentre= labyrinthe.chemin(s,t);
+        return cheminentre.size();
     }
 }

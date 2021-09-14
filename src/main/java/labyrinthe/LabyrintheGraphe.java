@@ -49,10 +49,7 @@ public class LabyrintheGraphe extends Labyrinthe implements ILabyrinthe {
                 }
             }
         }
-        DijkstraShortestPath<ISalle, DefaultEdge> dijkstraAlg =
-            new DijkstraShortestPath<>(standardGraph);
-        SingleSourcePaths<ISalle, DefaultEdge> iPaths = dijkstraAlg.getPaths(entree);
-        System.out.println(iPaths.getPath(sortie));
+
         this.standardGraph = standardGraph;
         
     }
@@ -65,5 +62,5 @@ public class LabyrintheGraphe extends Labyrinthe implements ILabyrinthe {
         
         return iPaths.getPath(v).getVertexList();
     }
-
+    
 }
