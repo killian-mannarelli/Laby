@@ -27,7 +27,7 @@ public class Core {
     protected void initLabyrinthe() {
         // creation du labyrinthe
         labyrinthe = new labyrinthe.LabyrintheGraphe();
-        chargementLaby("labys/level3.txt");
+        chargementLaby("labys/level10.txt");
     }
 
     protected void initSprites(IVue vue) {

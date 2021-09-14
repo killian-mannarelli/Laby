@@ -5,6 +5,8 @@ import labyrinthe.ISalle;
 import org.junit.Test;
 import outils.Fichier;
 import labyrinthe.Labyrinthe;
+import labyrinthe.LabyrintheGraphe;
+import labyrinthe.Salle;
 
 /**
  *
@@ -49,8 +51,20 @@ public class TestFichiersLabyrinthe {
     public void testChemin() {
         File repertoire = new File("labys/");
         File[] fichiers = getFiles(repertoire);
-        fail("not implemented");
+        for(File i : fichiers){
+            
+            
+            assertTrue(testCheminUnitaire(i));
+        }
     }
     
+    public boolean testCheminUnitaire(File file){
+        Labyrinthe test = new LabyrintheGraphe();
+        test.creerLabyrinthe(file.getAbsolutePath());
+        if(test.chemin(test.getEntree(),test.getSortie()) == null){
+            return false;
+        }
+        return true;
+    }
     
 }
