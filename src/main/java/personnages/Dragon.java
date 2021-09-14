@@ -6,8 +6,11 @@
 package personnages;
 
 import application.Core;
+import java.util.ArrayList;
 import java.util.Collection;
+import labyrinthe.ILabyrinthe;
 import labyrinthe.ISalle;
+import labyrinthe.LabyrintheGraphe;
 
 /**
  *
@@ -20,9 +23,11 @@ public class Dragon extends APersonnage{
         Collection<ISalle> ancienchemin;
         int compteur = 0;
         int avantmouvement = 15;
+        ILabyrinthe laby;
         
-         public Dragon(ISalle salle) {
+         public Dragon(ISalle salle, ILabyrinthe laby) {
         super(salle);
+        this.laby = laby;
     }
     
     @Override
@@ -32,6 +37,8 @@ public class Dragon extends APersonnage{
             return getPosition();
         }
         else{
+            ArrayList<ISalle> cheminv  = (ArrayList<ISalle>) laby.chemin(getPosition(), Core.herosstat.getPosition());
+            salleChoisie  = cheminv.get(1);
             if(sallesAccessibles.contains(salleChoisie)){
                 compteur=0;
              return salleChoisie;

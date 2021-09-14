@@ -38,7 +38,7 @@ public class Core {
             MonstreSprite m2 = new MonstreSprite(m,labyrinthe);
             vue.add(m2);
         }
-        Dragon d = new personnages.Dragon(labyrinthe.getSortie());
+        Dragon d = new personnages.Dragon(labyrinthe.getSortie(),labyrinthe);
         this.dragon = new DragonSprite(d,labyrinthe);
         vue.add(this.dragon);
         Heros h = new personnages.Heros(labyrinthe.getEntree());
@@ -54,9 +54,7 @@ public class Core {
             // choix et deplacement
             for (IPersonnage p : vue) {
                 Collection<ISalle> sallesAccessibles = labyrinthe.sallesAccessibles(p);
-                if(p == dragon){
-                    dragon.changerSalleChoisie();
-                }
+                
                 destination = p.faitSonChoix(sallesAccessibles); // on demande au personnage de faire son choix de salle
                 p.setPosition(destination); // deplacement
             }

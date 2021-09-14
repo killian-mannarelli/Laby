@@ -2,6 +2,7 @@ package vue2D.javafx;
 
 import application.Core;
 import java.util.Collection;
+import java.util.HashMap;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.Light;
@@ -32,6 +33,7 @@ public class Dessin extends Canvas {
     private boolean spritetrouve = false;
     private ISalle positionheroprecedente ;
     private Collection<ISalle> precedentchemin ;
+    HashMap<CoupleDeSalle,Integer> hm = new HashMap<>();
     public Dessin(ILabyrinthe labyrinthe, Collection<ISprite> sprites)
     {
         this.sprites = sprites;
@@ -100,24 +102,25 @@ public class Dessin extends Canvas {
     }
     
     public void setLight(ISalle salleEnQuestion){
-            
+           
   double x1 = positionDuHero.getX(); 
   double y1 = positionDuHero.getY(); 
   double x2 = salleEnQuestion.getX(); 
   double y2 = salleEnQuestion.getY();        
     double distance = Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
+    
     //int distance = distanceGraphe(positionDuHero,salleEnQuestion);         
     if(distance > 5){
-        tampon.setGlobalAlpha(0);
+        tampon.setGlobalAlpha(1);
     }
     else if(distance >4){
-        tampon.setGlobalAlpha(0.2);
+        tampon.setGlobalAlpha(1);
     }
     else if(distance >3){
-        tampon.setGlobalAlpha(0.3);
+        tampon.setGlobalAlpha(1);
     }
     else if(distance >2){
-        tampon.setGlobalAlpha(0.5);
+        tampon.setGlobalAlpha(1);
     }
     else {
         tampon.setGlobalAlpha(1);
@@ -156,8 +159,19 @@ public class Dessin extends Canvas {
 
         
     }
-    int distanceGraphe(ISalle s, ISalle t){
-        Collection<ISalle> cheminentre= labyrinthe.chemin(s,t);
-        return cheminentre.size();
+    int distanceGraphe(ISalle u, ISalle v){
+        CoupleDeSalle test = new CoupleDeSalle(u,v);
+        if(hm.containsKey(test)){
+            return hm.get(test);
+        }
+        else{
+            Collection<ISalle> cheminentre= labyrinthe.chemin(u,v);
+            int distance=  cheminentre.size();
+            hm.put(test, distance);
+            return distance;
+        }
+        
     }
+    
+    
 }

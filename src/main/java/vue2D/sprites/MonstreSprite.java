@@ -15,7 +15,7 @@ import personnages.Monstre;
  *
  * @author kmannarelli
  */
-public class MonstreSprite extends ASprite implements EventHandler<KeyEvent>{
+public class MonstreSprite extends ASprite {
     ILabyrinthe labyrinthe;
     Monstre monstre;
     public MonstreSprite(Monstre monstre,ILabyrinthe labyrinthe){
@@ -24,10 +24,5 @@ public class MonstreSprite extends ASprite implements EventHandler<KeyEvent>{
         this.monstre = monstre;
     }
 
-    @Override
-    public void handle(KeyEvent arg0) {
-        
-    }
     
-   
 }
