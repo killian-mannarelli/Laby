@@ -5,6 +5,7 @@
  */
 package vue2D.javafx;
 
+import java.util.Objects;
 import labyrinthe.ISalle;
 
 /**
@@ -30,5 +31,13 @@ public class CoupleDeSalle {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 23 * hash + Objects.hashCode(this.u);
+        hash = 23 * hash + Objects.hashCode(this.v);
+        return hash;
     }
 }

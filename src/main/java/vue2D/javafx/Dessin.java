@@ -102,25 +102,25 @@ public class Dessin extends Canvas {
     }
     
     public void setLight(ISalle salleEnQuestion){
-           
+  /**         
   double x1 = positionDuHero.getX(); 
   double y1 = positionDuHero.getY(); 
   double x2 = salleEnQuestion.getX(); 
   double y2 = salleEnQuestion.getY();        
     double distance = Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
-    
-    //int distance = distanceGraphe(positionDuHero,salleEnQuestion);         
+    */
+    int distance = distanceGraphe(positionDuHero,salleEnQuestion);         
     if(distance > 5){
-        tampon.setGlobalAlpha(1);
+        tampon.setGlobalAlpha(0);
     }
     else if(distance >4){
-        tampon.setGlobalAlpha(1);
+        tampon.setGlobalAlpha(0.2);
     }
     else if(distance >3){
-        tampon.setGlobalAlpha(1);
+        tampon.setGlobalAlpha(0.3);
     }
     else if(distance >2){
-        tampon.setGlobalAlpha(1);
+        tampon.setGlobalAlpha(0.5);
     }
     else {
         tampon.setGlobalAlpha(1);

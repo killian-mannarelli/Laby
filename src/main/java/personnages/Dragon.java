@@ -20,7 +20,6 @@ public class Dragon extends APersonnage{
     
         ISalle salleChoisie;
         ISalle positionHero;
-        Collection<ISalle> ancienchemin;
         int compteur = 0;
         int avantmouvement = 15;
         ILabyrinthe laby;
