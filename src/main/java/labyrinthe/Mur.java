@@ -5,6 +5,7 @@
  */
 package labyrinthe;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.scene.image.Image;
 
@@ -15,10 +16,13 @@ import javafx.scene.image.Image;
 public class Mur extends Salle {
     private Image imageMur;
     HashMap<DirectionMur,Image> choix = new HashMap<>();
+    Labyrinthe l;
     
-    public Mur(int x, int y){
+    public Mur(int x, int y, Labyrinthe la){
         super(x,y);
-        
+        RemplirMap();
+        this.l = la;
+        attribuerImage();
     }
     
     
@@ -46,7 +50,11 @@ public class Mur extends Salle {
         imageMur = newImage;
     }
     
-    public void choisirImage(){
+    public Image getImage(){
+        return this.imageMur;
+    }
+    
+    public void RemplirMap(){
         choix.put(new DirectionMur(1, 1, 1, 1), new Image("file:icons/mur0.gif"));
         choix.put(new DirectionMur(1, 0, 1, 1), new Image("file:icons/mur1.gif"));
         choix.put(new DirectionMur(1, 1, 1, 0), new Image("file:icons/mur2.gif"));
@@ -63,5 +71,29 @@ public class Mur extends Salle {
         choix.put(new DirectionMur(0, 0, 1, 0), new Image("file:icons/mur13.gif"));
         choix.put(new DirectionMur(1, 0, 0, 0), new Image("file:icons/mur14.gif"));
     }
- 
+    public void attribuerImage(){
+        ArrayList<ISalle> salleautour = new ArrayList<>();
+        int[] directions = {0, 0, 0, 0};
+        for(ISalle i : l){
+            if(this.estAdjacente(i)){
+                salleautour.add(i);
+            }
+        }
+        
+        for(ISalle i : salleautour){
+            if(i.getX() > getX()){
+               directions[1] = 1; 
+            }
+            else if(i.getX() < getX()){
+                directions[3] = 1;
+            }
+            if(i.getY() > getY()){
+               directions[2] = 1; 
+            }
+            else if(i.getY() < getY()){
+                directions[0] = 1;
+            }
+        }
+        choix.get(new DirectionMur(directions[0],directions[1],directions[2],directions[3]));
+    }
 }

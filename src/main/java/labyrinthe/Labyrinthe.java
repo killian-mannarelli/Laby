@@ -17,6 +17,7 @@ public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
     protected ISalle sortie;
     private int largeur;
     private int hauteur;
+    public ArrayList<Mur> listeMur = new ArrayList<>();
 
     @Override
     public void creerLabyrinthe(String file) {
@@ -55,7 +56,21 @@ public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
                       add(newSalle);
                       }
         }
-         
+         ArrayList<ISalle> murpossibles = new ArrayList<>();
+         for(int i=0;i<largeur;i++){
+             for(int j=0;j<hauteur;j++){
+                 Salle newSalle = new Salle(i,j);
+                 if(!this.contains(newSalle)){
+                     for(ISalle k :this){
+                         if(k.estAdjacente(newSalle)){
+                             Mur newMur = new Mur(i,j,this);
+                             listeMur.add(newMur);
+                             break;
+                         }
+                     }
+                 }
+             }
+         }
        }
     
     	catch(InvalidFileException e){

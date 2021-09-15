@@ -11,6 +11,8 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import labyrinthe.ILabyrinthe;
 import labyrinthe.ISalle;
+import labyrinthe.Labyrinthe;
+import labyrinthe.Mur;
 import labyrinthe.Salle;
 import vue2D.sprites.ISprite;
 
@@ -23,6 +25,7 @@ public class Dessin extends Canvas {
     
     private Collection<ISprite> sprites;
     private ILabyrinthe labyrinthe;
+    Labyrinthe lcast;
     private int unite = 15;
     int compteur = 0;
     private GraphicsContext tampon;
@@ -40,6 +43,7 @@ public class Dessin extends Canvas {
     {
         this.sprites = sprites;
         this.labyrinthe = labyrinthe;
+        lcast= (Labyrinthe) labyrinthe;
         setWidth(labyrinthe.getLargeur()*unite);
         setHeight(labyrinthe.getHauteur()*unite);
         tampon = this.getGraphicsContext2D();
@@ -87,6 +91,16 @@ public class Dessin extends Canvas {
         }
     }
     
+    public void dessinMurs(){
+        
+        //System.out.println(lcast.listeMur);
+        for(Mur i :lcast.listeMur){
+            //setLight(i);
+            tampon.setGlobalAlpha(1);
+            tampon.drawImage(solImage,i.getX()*unite,i.getY()*unite,unite,unite);
+        }
+    }
+    
     public void setHeroPosition(){
         if(!spritetrouve){
             for(ISprite i : sprites){
@@ -106,7 +120,7 @@ public class Dessin extends Canvas {
     }
     
     public void setLight(ISalle salleEnQuestion){
-  /**         
+  /**       
   double x1 = positionDuHero.getX(); 
   double y1 = positionDuHero.getY(); 
   double x2 = salleEnQuestion.getX(); 
