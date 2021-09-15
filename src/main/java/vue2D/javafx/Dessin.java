@@ -145,6 +145,12 @@ public class Dessin extends Canvas {
              precedentchemin = labyrinthe.chemin(heros.getPosition(), labyrinthe.getSortie());
             positionheroprecedente = heros.getPosition();
             for(ISalle i :precedentchemin){
+                for(ISalle j : labyrinthe.sallesAccessibles(heros)){
+                    distanceGraphe(i,j);
+                }
+                
+            }
+            for(ISalle i :precedentchemin){
             setLight(i);
             tampon.drawImage(groundImage,i.getX()*unite,i.getY()*unite,unite,unite);
             compteur++;
@@ -171,9 +177,17 @@ public class Dessin extends Canvas {
         
     }
     int distanceGraphe(ISalle u, ISalle v){
+        double x1 = u.getX(); 
+  double y1 = u.getY(); 
+  double x2 = v.getX(); 
+  double y2 = v.getY();        
+    double distancebrute = Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
         CoupleDeSalle test = new CoupleDeSalle(u,v);
         if(hm.containsKey(test)){
             return hm.get(test);
+        }
+        else if(distancebrute>6){
+            return 99;
         }
         else{
             Collection<ISalle> cheminentre= labyrinthe.chemin(u,v);
