@@ -31,7 +31,6 @@ public class Vue extends AVue implements IVue {
     public void dessiner() {
         // recopie du fond (image); murs + salles
         dessin.dessinFond();
-        dessin.setHeroPosition();
         dessin.dessinSalles();
         dessin.dessinPlusCourtChemin(Core.herosstat);
         dessin.dessinMurs();

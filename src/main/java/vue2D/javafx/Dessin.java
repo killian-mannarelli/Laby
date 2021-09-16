@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 import labyrinthe.ILabyrinthe;
 import labyrinthe.ISalle;
 import labyrinthe.Labyrinthe;
+import labyrinthe.LabyrintheGraphe;
 import labyrinthe.Mur;
 import labyrinthe.Salle;
 import vue2D.sprites.ISprite;
@@ -49,7 +50,7 @@ public class Dessin extends Canvas {
         tampon = this.getGraphicsContext2D();
         chargementImages();
         dessinFond();
-        setHeroPosition();
+        //setHeroPosition();
         
     }
     
@@ -95,7 +96,7 @@ public class Dessin extends Canvas {
         
         //System.out.println(lcast.listeMur);
         for(Mur i :lcast.listeMur){
-            setLight(i);
+            //setLight(i);
             //tampon.setGlobalAlpha(1);
             //i.attribuerImage();
             //System.out.println(i.getImage());
@@ -103,38 +104,22 @@ public class Dessin extends Canvas {
         }
     }
     
-    public void setHeroPosition(){
-        if(!spritetrouve){
-            for(ISprite i : sprites){
-            if(i.getPosition().equals(labyrinthe.getEntree())){
-                positionDuHero = i.getPosition();
-                sallevisitee.add(positionDuHero);
-                spritehero = i;
-                spritetrouve=true;
-                break;
-            }
-        }
-        }
-        else{
-            positionDuHero = spritehero.getPosition();
-            sallevisitee.add(positionDuHero);
-        }
-    }
-    
     public void setLight(ISalle salleEnQuestion){
-        
+        /**
+  Mur m =  new Mur(0,0,(Labyrinthe) labyrinthe);      
   double x1 = positionDuHero.getX(); 
   double y1 = positionDuHero.getY(); 
   double x2 = salleEnQuestion.getX(); 
   double y2 = salleEnQuestion.getY();        
     double distance = Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
-    
+        */
     if(sallevisitee.contains(salleEnQuestion)){
         tampon.setGlobalAlpha(1);
     }
     
     else{
-            //int distance = distanceGraphe(positionDuHero,salleEnQuestion);         
+        
+            int distance = distanceGraphe(positionDuHero,salleEnQuestion);         
     if(distance > 7){
         tampon.setGlobalAlpha(0);
     }
@@ -206,6 +191,7 @@ public class Dessin extends Canvas {
             return 99;
         }
         else{
+            
             Collection<ISalle> cheminentre= labyrinthe.chemin(u,v);
             int distance=  cheminentre.size();
             hm.put(test, distance);

@@ -45,7 +45,7 @@ public class Salle implements ISalle {
         return false;
 
     }
-
+    
     @Override
     public int hashCode() {
         final int prime = 31;

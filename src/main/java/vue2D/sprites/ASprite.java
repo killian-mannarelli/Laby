@@ -46,8 +46,7 @@ public abstract class ASprite implements ISprite {
     }
 
     public void setCoordonnees(int xpix, int ypix) {
-        xpix = xpix + 1;
-        ypix = ypix + 1;
+       
     }
 
     public ISalle getPosition() {

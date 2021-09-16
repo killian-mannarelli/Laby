@@ -84,7 +84,6 @@ public class Mur extends Salle {
                 directions[0] = 1;
             }
         }
-        System.out.println(directions[0]+ " " +" "+directions[1]+" "+directions[2]+" "+directions[3]);
         setImage(choix.get(new DirectionMur(directions[0],directions[1],directions[2],directions[3])));
     }
 }
