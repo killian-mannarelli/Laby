@@ -18,6 +18,10 @@ import vue2D.sprites.MonstreSprite;
  *
  * @author INFO Professors team
  */
+/**
+ * @author Epsi
+ *
+ */
 public class Core {
     ISprite heros;
     DragonSprite dragon;

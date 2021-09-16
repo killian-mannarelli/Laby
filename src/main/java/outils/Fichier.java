@@ -8,13 +8,22 @@ import labyrinthe.Labyrinthe;
 import labyrinthe.Salle;
 import outils.InvalidFileException;
 
+// 
 /**
+ *  Class Fichier.
  *
  * @author INFO Professors team
  */
 public class Fichier {
+    
+    
     Scanner sc=null;
     
+    /**
+     * Constructeur de la classe fichier.
+     *
+     * @param nomFichier  nom fichier
+     */
     public Fichier(String nomFichier){
         try{
 	    sc = new Scanner(new File(nomFichier));
@@ -23,6 +32,11 @@ public class Fichier {
     }
     
   // retourne le prochain entier dans le fichier
+  /**
+   * Lire nombre.
+   *
+   * @return the int
+   */
   // retourne -1 s'il n'y en a pas
     public int lireNombre(){
         if (sc.hasNextInt()){
@@ -31,6 +45,12 @@ public class Fichier {
         return -1;
     }
     
+    /**
+     * Test si les coordonnees des salles sont valides dans le fichier.
+     *
+     * @param f le fichier
+     * @return true, if successful
+     */
     public static boolean testCoordonneesSallesFichier(File f){
         Fichier test = new Fichier(f.getAbsolutePath());
         System.out.println("Analyse du niveau : " + f.getName());
@@ -74,6 +94,12 @@ public class Fichier {
         return result;
     }
     
+    /**
+     * Test si il n'y a pas de doublon dans le fichier.
+     *
+     * @param file le fichier
+     * @return true, if successful
+     */
     public static boolean testPasDeDoublonFichier(File file){
         Labyrinthe test = new Labyrinthe();
              Fichier f = new Fichier(file.getAbsolutePath());
@@ -111,6 +137,13 @@ public class Fichier {
             return test2.size() == test.size();
     }
     
+    /**
+     * Test si un fichier de niveau est valide.
+     *
+     * @param nomFichier  nom fichier
+     * @return true, if successful
+     * @throws InvalidFileException renvoie cette exception si le fichier est invalide
+     */
     public static boolean testValide(String nomFichier) throws InvalidFileException{
         File fichier = new File(nomFichier);
         if(!testCoordonneesSallesFichier(fichier)){

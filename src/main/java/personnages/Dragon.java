@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package personnages;
 
 import application.Core;
@@ -12,23 +8,46 @@ import labyrinthe.ILabyrinthe;
 import labyrinthe.ISalle;
 import labyrinthe.LabyrintheGraphe;
 
+
 /**
+ *  Class Dragon.
  *
  * @author kmannarelli
  */
 public class Dragon extends APersonnage{
     
+        
         ISalle salleChoisie;
+        
+        
         ISalle positionHero;
+        
+       
         int compteur = 0;
+        
+       
         int avantmouvement = 15;
+        
+       
         ILabyrinthe laby;
         
+         /**
+          * Constructeur de la classe dragon.
+          *
+          * @param salle salle de départ
+          * @param laby labyrinthe de référence
+          */
          public Dragon(ISalle salle, ILabyrinthe laby) {
         super(salle);
         this.laby = laby;
     }
     
+    /**
+     * Fait son choix de salle.
+     *
+     * @param sallesAccessibles les salles accessibles
+     * @return la salle vers où le dragon doit bouger
+     */
     @Override
     public ISalle faitSonChoix(Collection<ISalle> sallesAccessibles) {
         if(compteur < avantmouvement){
@@ -52,6 +71,12 @@ public class Dragon extends APersonnage{
        
         
     }
+     
+     /**
+      * Sets  salle choisie.
+      *
+      * @param nouvelleSalle  nouvelle salle choisie
+      */
      public void setSalleChoisie(ISalle nouvelleSalle){
          salleChoisie = nouvelleSalle;
      }

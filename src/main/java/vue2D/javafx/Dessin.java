@@ -17,29 +17,69 @@ import labyrinthe.Mur;
 import labyrinthe.Salle;
 import vue2D.sprites.ISprite;
 
+
 /**
-*
-* @author INFO Professors team
-*/
+ *   Dessin.
+ *
+ * @author INFO Professors team
+ */
 
 public class Dessin extends Canvas {
     
+    
     private Collection<ISprite> sprites;
+    
+   
     private ILabyrinthe labyrinthe;
+    
+    
     Labyrinthe lcast;
+    
+    
     private int unite = 15;
+    
+  
     int compteur = 0;
+    
+   
     private GraphicsContext tampon;
+    
+
     private Image solImage;
+    
+
     private Image groundImage;
+    
+  
     private Image cheminImage;
+    
+    
     private ISalle positionDuHero;
+    
+  
     private ISprite spritehero;
+    
+   
     private boolean spritetrouve = false;
+    
+ 
     private ISalle positionheroprecedente ;
+    
+ 
     private Collection<ISalle> precedentchemin ;
+    
+  
     HashMap<CoupleDeSalle,Integer> hm = new HashMap<>();
+    
+  
     HashSet<ISalle> sallevisitee = new HashSet<>();
+    
+    /**
+     * Constructeur de la classe dessin.
+     *
+     * @param labyrinthe le  labyrinthe
+     * @param sprites la liste des sprites
+     */
     public Dessin(ILabyrinthe labyrinthe, Collection<ISprite> sprites)
     {
         this.sprites = sprites;
@@ -54,18 +94,27 @@ public class Dessin extends Canvas {
         
     }
     
+     /**
+      * Chargement des images.
+      */
      public void chargementImages(){
     	solImage = new Image("file:icons/pyramide.jpg");
         groundImage = new Image ("file:icons/marbre.jpg");
         cheminImage = new Image ("file:icons/ground.gif");
     }
     
+    /**
+     * Dessine le fond.
+     */
     public void dessinFond(){
         
         tampon.drawImage(solImage,0,0,unite*labyrinthe.getLargeur(),
                 unite*labyrinthe.getHauteur());
     }
     
+    /**
+     * Dessine les sprites.
+     */
     public void dessinerSprites(){
         tampon.setGlobalAlpha(1);
 
@@ -77,6 +126,9 @@ public class Dessin extends Canvas {
         }
     }
     
+    /**
+     * Dessine  les salles.
+     */
     public void dessinSalles(){
 
         for(ISalle i : labyrinthe){
@@ -85,6 +137,9 @@ public class Dessin extends Canvas {
         }
     }
     
+    /**
+     * Dessine  le chemin vers la sortie depuis l'entrée.
+     */
     public void dessinChemin(){
         for(ISalle i : labyrinthe.chemin(labyrinthe.getEntree(), labyrinthe.getSortie())){
             setLight(i);
@@ -92,6 +147,9 @@ public class Dessin extends Canvas {
         }
     }
     
+    /**
+     * Dessine les murs.
+     */
     public void dessinMurs(){
         
         //System.out.println(lcast.listeMur);
@@ -104,6 +162,11 @@ public class Dessin extends Canvas {
         }
     }
     
+    /**
+     * Etablis la luminosité de la salle en fonction de la distance (en comptant les salles) du héro .
+     *
+     * @param salleEnQuestion la salle d'où on veut établir la luminosité
+     */
     public void setLight(ISalle salleEnQuestion){
         /**
   Mur m =  new Mur(0,0,(Labyrinthe) labyrinthe);      
@@ -140,6 +203,11 @@ public class Dessin extends Canvas {
 }
     
     
+    /**
+     * Dessine le plus court chemin à partir de la position du héro.
+     *
+     * @param heros Le Sprite du héro pour récupérer sa position
+     */
     public void dessinPlusCourtChemin(ISprite heros){
         
         if(compteur == 0){
@@ -177,6 +245,14 @@ public class Dessin extends Canvas {
 
         
     }
+    
+    /**
+     * Calcule la distance entre deux salles à partir du graphe
+     *
+     * @param u the u
+     * @param v the v
+     * @return the int
+     */
     int distanceGraphe(ISalle u, ISalle v){
         double x1 = u.getX(); 
   double y1 = u.getY(); 

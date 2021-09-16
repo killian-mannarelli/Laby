@@ -9,15 +9,30 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.scene.image.Image;
 
+
 /**
+ * The Class Mur.
  *
  * @author kmannarelli
  */
 public class Mur extends Salle {
+    
+   
     private Image imageMur;
+    
+    
     HashMap<DirectionMur,Image> choix = new HashMap<>();
+    
+    
     Labyrinthe l;
     
+    /**
+     * Constructeur de la classe mur.
+     *
+     * @param x coordonnée x du mur
+     * @param y coordonnée y du mur
+     * @param la Labyrinthe de référence
+     */
     public Mur(int x, int y, Labyrinthe la){
         super(x,y);
         RemplirMap();
@@ -28,6 +43,11 @@ public class Mur extends Salle {
     
     
     
+    /**
+     * Hash code.
+     *
+     * @return hashcode
+     */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -36,14 +56,28 @@ public class Mur extends Salle {
         result = prime * result + getY();
         return result;
     }
+    
+    /**
+     * Sets  image.
+     *
+     * @param newImage  nouvelle image
+     */
     public void setImage(Image newImage){
         imageMur = newImage;
     }
     
+    /**
+     * Gets  image.
+     *
+     * @return  image
+     */
     public Image getImage(){
         return this.imageMur;
     }
     
+    /**
+     * Remplir la map avec des valeur.
+     */
     public void RemplirMap(){
         choix.put(new DirectionMur(1, 1, 1, 1), new Image("file:icons/mur0.gif"));
         choix.put(new DirectionMur(1, 0, 1, 1), new Image("file:icons/mur1.gif"));
@@ -61,6 +95,10 @@ public class Mur extends Salle {
         choix.put(new DirectionMur(0, 0, 1, 0), new Image("file:icons/mur13.gif"));
         choix.put(new DirectionMur(1, 0, 0, 0), new Image("file:icons/mur14.gif"));
     }
+    
+    /**
+     * Attribuer une image au mur.
+     */
     public void attribuerImage(){
         ArrayList<ISalle> salleautour = new ArrayList<>();
         int[] directions = {0, 0, 0, 0};

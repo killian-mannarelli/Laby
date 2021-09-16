@@ -9,16 +9,28 @@ import vue2D.IVue;
 import vue2D.AVue;
 import vue2D.sprites.ISprite;
 
+
 /**
+ *  Class Vue.
  *
  * @author INFO Professors team
  */
 public class Vue extends AVue implements IVue {
 
+    /** The dessin. */
     Dessin dessin;
+    
+    /** The labyrinthe. */
     ILabyrinthe labyrinthe;
+    
+    /** The scene. */
     public Scene scene;
 
+    /**
+     * Instantiates a new vue.
+     *
+     * @param labyrinthe the labyrinthe
+     */
     public Vue(ILabyrinthe labyrinthe) {
         this.labyrinthe = labyrinthe;
         dessin = new Dessin(labyrinthe, this);
@@ -27,6 +39,9 @@ public class Vue extends AVue implements IVue {
         root.getChildren().add(dessin);
     }
 
+    /**
+     * Dessiner.
+     */
     @Override
     public void dessiner() {
         // recopie du fond (image); murs + salles
@@ -38,6 +53,12 @@ public class Vue extends AVue implements IVue {
 
     }
 
+    /**
+     * Adds the.
+     *
+     * @param sprite the sprite
+     * @return true, if successful
+     */
     @Override
     public boolean add(ISprite sprite) {
         super.add(sprite);

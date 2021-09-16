@@ -7,13 +7,26 @@ package labyrinthe;
 
 import java.util.Arrays;
 
+
+
 /**
+ *  Class DirectionMur.
  *
  * @author kmannarelli
  */
 public class DirectionMur {
+    
+    /**  Le tableau de direction pour les images */
     public int[] tableaudedirection;
     
+   /**
+    * Constructeur de Directionmur.
+    *
+    * @param droite entier répresentant si il y a une salle à droite
+    * @param haut entier répresentant si il y a une salle en haut
+    * @param gauche entier répresentant si il y a une salle à gauche
+    * @param bas entier répresentant si il y a une salle en bas
+    */
    public DirectionMur(int droite, int haut ,int gauche, int bas){
        int[] tab = {
            droite,haut,gauche,bas
@@ -21,6 +34,11 @@ public class DirectionMur {
        tableaudedirection = tab;
    }
 
+    /**
+     * Hash code.
+     *
+     * @return Hashcode
+     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -28,6 +46,12 @@ public class DirectionMur {
         return hash;
     }
 
+    /**
+     * Equals.
+     *
+     * @param obj the obj
+     * @return true, if successful
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

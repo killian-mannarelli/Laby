@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package vue2D.sprites;
 
 import java.util.Collection;
@@ -15,14 +11,29 @@ import application.Core;
 import javafx.scene.canvas.GraphicsContext;
 import personnages.Dragon;
 
+
 /**
+ *  Class DragonSprite.
  *
  * @author kmannarelli
  */
 public class DragonSprite extends ASprite  {
+    
+    /**  dragon. */
     Dragon dragon;
+    
+    /**  compteur. */
     int compteur = 0;
+    
+    
     private ISalle positionheroprecedente ;
+    
+    /**
+     * Constructeur de la classe dragonsprite.
+     *
+     * @param dragon the dragon
+     * @param labyrinthe the labyrinthe
+     */
     public DragonSprite(Dragon dragon,ILabyrinthe labyrinthe){
         super(dragon,new Image("file:icons/monstre1.gif"));
         this.dragon = dragon;

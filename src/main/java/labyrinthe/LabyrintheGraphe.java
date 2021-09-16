@@ -23,15 +23,23 @@ import outils.Fichier;
 import outils.InvalidFileException;
 import personnages.IPersonnage;
 
+
 /**
+ * The Class LabyrintheGraphe.
  *
  * @author kmannarelli
  */
 public class LabyrintheGraphe extends Labyrinthe implements ILabyrinthe {
 
 
+    /** The standard graph. */
     public Graph<ISalle, DefaultEdge> standardGraph;
 
+    /**
+     * Creer un labyrinthe en reprenant la méthode de Labyrinthe et en créant un Graphe.
+     *
+     * @param file the file
+     */
     @Override
     public void creerLabyrinthe(String file) {
         SimpleGraph<ISalle, DefaultEdge> standardGraph
@@ -54,6 +62,13 @@ public class LabyrintheGraphe extends Labyrinthe implements ILabyrinthe {
         
     }
     
+    /**
+     * Calcule un chemin entre deux salles à partir du graphe.
+     *
+     * @param u première salle
+     * @param v deuxième salle
+     * @return Le chemin sous forme de Liste de ISalle
+     */
     @Override
     public Collection<ISalle> chemin(ISalle u, ISalle v) {
         DijkstraShortestPath<ISalle, DefaultEdge> dijkstraAlg =
