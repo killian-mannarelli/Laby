@@ -182,7 +182,8 @@ public class Dessin extends Canvas {
     
     else{
         
-            int distance = distanceGraphe(positionDuHero,salleEnQuestion);         
+            int distance = distanceGraphe(Core.herosstat.getPosition(),salleEnQuestion);
+            sallevisitee.add(Core.herosstat.getPosition());
     if(distance > 7){
         tampon.setGlobalAlpha(0);
     }
