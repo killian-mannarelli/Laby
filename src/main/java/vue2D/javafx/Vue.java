@@ -34,7 +34,7 @@ public class Vue extends AVue implements IVue {
         dessin.setHeroPosition();
         dessin.dessinSalles();
         dessin.dessinPlusCourtChemin(Core.herosstat);
-        //dessin.dessinMurs();
+        dessin.dessinMurs();
         dessin.dessinerSprites();
 
     }

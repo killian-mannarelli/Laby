@@ -26,17 +26,7 @@ public class Mur extends Salle {
     }
     
     
-    @Override
-    public boolean equals(Object obj) {
-        Mur other = (Mur) obj;
-        if (getX() != other.getX()) {
-            return false;
-        }
-        if (getY() != other.getY()) {
-            return false;
-        }
-        return true;
-    }
+    
     
     @Override
     public int hashCode() {
@@ -79,7 +69,7 @@ public class Mur extends Salle {
                 salleautour.add(i);
             }
         }
-        
+
         for(ISalle i : salleautour){
             if(i.getX() > getX()){
                directions[1] = 1; 
@@ -94,6 +84,7 @@ public class Mur extends Salle {
                 directions[0] = 1;
             }
         }
-        choix.get(new DirectionMur(directions[0],directions[1],directions[2],directions[3]));
+        System.out.println(directions[0]+ " " +" "+directions[1]+" "+directions[2]+" "+directions[3]);
+        setImage(choix.get(new DirectionMur(directions[0],directions[1],directions[2],directions[3])));
     }
 }

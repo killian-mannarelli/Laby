@@ -95,9 +95,11 @@ public class Dessin extends Canvas {
         
         //System.out.println(lcast.listeMur);
         for(Mur i :lcast.listeMur){
-            //setLight(i);
-            tampon.setGlobalAlpha(1);
-            tampon.drawImage(solImage,i.getX()*unite,i.getY()*unite,unite,unite);
+            setLight(i);
+            //tampon.setGlobalAlpha(1);
+            //i.attribuerImage();
+            //System.out.println(i.getImage());
+            tampon.drawImage(i.getImage(),i.getX()*unite,i.getY()*unite,unite,unite);
         }
     }
     
@@ -120,19 +122,19 @@ public class Dessin extends Canvas {
     }
     
     public void setLight(ISalle salleEnQuestion){
-  /**       
+        
   double x1 = positionDuHero.getX(); 
   double y1 = positionDuHero.getY(); 
   double x2 = salleEnQuestion.getX(); 
   double y2 = salleEnQuestion.getY();        
     double distance = Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
-    */
+    
     if(sallevisitee.contains(salleEnQuestion)){
         tampon.setGlobalAlpha(1);
     }
     
     else{
-            int distance = distanceGraphe(positionDuHero,salleEnQuestion);         
+            //int distance = distanceGraphe(positionDuHero,salleEnQuestion);         
     if(distance > 7){
         tampon.setGlobalAlpha(0);
     }
