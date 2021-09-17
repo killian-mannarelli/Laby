@@ -208,17 +208,9 @@ public class Dessin extends Canvas {
             
             int distance = distanceGrapheMur(Core.herosstat.getPosition(),salleEnQuestion);
             sallevisitee.add(Core.herosstat.getPosition());
-    if(distance > 7){
+   
+    if(distance >3){
         tampon.setGlobalAlpha(0);
-    }
-    else if(distance >6){
-        tampon.setGlobalAlpha(0.2);
-    }
-    else if(distance >5){
-        tampon.setGlobalAlpha(0.3);
-    }
-    else if(distance >4){
-        tampon.setGlobalAlpha(0.5);
     }
     else {
         tampon.setGlobalAlpha(1);
