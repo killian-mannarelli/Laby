@@ -154,7 +154,7 @@ public class Dessin extends Canvas {
         
         //System.out.println(lcast.listeMur);
         for(Mur i :lcast.listeMur){
-            //setLight(i);
+            setLightMur(i);
             //tampon.setGlobalAlpha(1);
             //i.attribuerImage();
             //System.out.println(i.getImage());
@@ -168,20 +168,13 @@ public class Dessin extends Canvas {
      * @param salleEnQuestion la salle d'où on veut établir la luminosité
      */
     public void setLight(ISalle salleEnQuestion){
-        /**
-  Mur m =  new Mur(0,0,(Labyrinthe) labyrinthe);      
-  double x1 = positionDuHero.getX(); 
-  double y1 = positionDuHero.getY(); 
-  double x2 = salleEnQuestion.getX(); 
-  double y2 = salleEnQuestion.getY();        
-    double distance = Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
-        */
+
     if(sallevisitee.contains(salleEnQuestion)){
         tampon.setGlobalAlpha(1);
     }
     
     else{
-        
+            
             int distance = distanceGraphe(Core.herosstat.getPosition(),salleEnQuestion);
             sallevisitee.add(Core.herosstat.getPosition());
     if(distance > 7){
@@ -203,6 +196,36 @@ public class Dessin extends Canvas {
 
 }
     
+    
+      
+    public void setLightMur(ISalle salleEnQuestion){
+
+    if(sallevisitee.contains(salleEnQuestion)){
+        tampon.setGlobalAlpha(1);
+    }
+    
+    else{
+            
+            int distance = distanceGrapheMur(Core.herosstat.getPosition(),salleEnQuestion);
+            sallevisitee.add(Core.herosstat.getPosition());
+    if(distance > 7){
+        tampon.setGlobalAlpha(0);
+    }
+    else if(distance >6){
+        tampon.setGlobalAlpha(0.2);
+    }
+    else if(distance >5){
+        tampon.setGlobalAlpha(0.3);
+    }
+    else if(distance >4){
+        tampon.setGlobalAlpha(0.5);
+    }
+    else {
+        tampon.setGlobalAlpha(1);
+    }
+    }
+
+}
     
     /**
      * Dessine le plus court chemin à partir de la position du héro.
@@ -268,8 +291,8 @@ public class Dessin extends Canvas {
             return 99;
         }
         else{
-            
-            Collection<ISalle> cheminentre= labyrinthe.chemin(u,v);
+            LabyrintheGraphe l2 = (LabyrintheGraphe) labyrinthe;
+            Collection<ISalle> cheminentre= l2.chemin(u,v);
             int distance=  cheminentre.size();
             hm.put(test, distance);
             return distance;
@@ -277,5 +300,28 @@ public class Dessin extends Canvas {
         
     }
     
+    
+        int distanceGrapheMur(ISalle u, ISalle v){
+        double x1 = u.getX(); 
+  double y1 = u.getY(); 
+  double x2 = v.getX(); 
+  double y2 = v.getY();        
+    double distancebrute = Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
+        CoupleDeSalle test = new CoupleDeSalle(u,v);
+        if(hm.containsKey(test)){
+            return hm.get(test);
+        }
+        else if(distancebrute>6){
+            return 99;
+        }
+        else{
+            LabyrintheGraphe l2 = (LabyrintheGraphe) labyrinthe;
+            Collection<ISalle> cheminentre= l2.cheminLight(u,v);
+            int distance=  cheminentre.size();
+            hm.put(test, distance);
+            return distance;
+        }
+        
+    }
     
 }

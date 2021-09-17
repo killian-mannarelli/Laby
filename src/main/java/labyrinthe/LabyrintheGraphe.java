@@ -34,6 +34,7 @@ public class LabyrintheGraphe extends Labyrinthe implements ILabyrinthe {
 
     /** The standard graph. */
     public Graph<ISalle, DefaultEdge> standardGraph;
+    public Graph<ISalle, DefaultEdge> lightGraph;
 
     /**
      * Creer un labyrinthe en reprenant la méthode de Labyrinthe et en créant un Graphe.
@@ -59,9 +60,30 @@ public class LabyrintheGraphe extends Labyrinthe implements ILabyrinthe {
         }
 
         this.standardGraph = standardGraph;
-        
+        SimpleGraph<ISalle, DefaultEdge> standard2Graph  = new SimpleGraph<ISalle, DefaultEdge>(DefaultEdge.class);
+         for (ISalle i : this) {
+            standard2Graph.addVertex(i);
+        }
+
+        for (ISalle i : this) {
+            for (ISalle j : this) {
+                if (i.estAdjacente(j) && !standard2Graph.containsEdge(i, j)) {
+
+                    standard2Graph.addEdge(i, j);
+                }
+            }
     }
-    
+        for(ISalle i : this.listeMur){
+            standard2Graph.addVertex(i);
+            for(ISalle j : this){
+                 if (i.estAdjacente(j) && !standard2Graph.containsEdge(i, j)) {
+
+                    standard2Graph.addEdge(i, j);
+                }
+            }
+        }
+        this.lightGraph = standard2Graph;
+    }
     /**
      * Calcule un chemin entre deux salles à partir du graphe.
      *
@@ -78,4 +100,11 @@ public class LabyrintheGraphe extends Labyrinthe implements ILabyrinthe {
         return iPaths.getPath(v).getVertexList();
     }
     
+     public Collection<ISalle> cheminLight(ISalle u, ISalle v) {
+        DijkstraShortestPath<ISalle, DefaultEdge> dijkstraAlg =
+            new DijkstraShortestPath<>(lightGraph);
+        SingleSourcePaths<ISalle, DefaultEdge> iPaths = dijkstraAlg.getPaths(u);
+        
+        return iPaths.getPath(v).getVertexList();
+    }
 }
