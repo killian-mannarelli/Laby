@@ -1,7 +1,7 @@
-
 - # ProjetReprise-MannarelliKillian
 
 - Exercice 3 06/09
+Pas de difficultés
 - Exercice 4 06/09
 - Exercice 5 07/09
 - Exercice 6 07/09
@@ -19,4 +19,12 @@
 - Exercice 18 09/09
 - Exercice 19 11/09
 - Exercice 20 11/09
-
+- Exercice 21 13/09
+- Exercice 22 13/09
+- Exercice 23 13/09
+- Exercice 24 13/09
+- Exercice 25 13/09
+- Exercice 26 14/09
+- Exercice 27 14/09
+- Exercice 28 14/09
+- Exercice 29 16/09
